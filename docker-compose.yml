@@ -1,0 +1,35 @@
+version: "3.7"
+services:
+  t3-server:
+    container_name: t3-server
+    build: .
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "5001:5001"
+      - "5757:5757"
+    # links:
+    #   - t3-server-db
+    environment:
+      - dev=1
+      - t3-server-name=t3-server-db
+      - db-name=t3
+      - db-retry-time=3000
+  # t3-server-db:
+  #   container_name: t3-server-db
+  #   image: mongo
+  #   volumes:
+  #     - ./db:/data/db
+  #   ports:
+  #     - "27017:27017"
+  # mongo-express:
+  #   container_name: mongodb-express
+  #   depends_on:
+  #     - t3-server-db
+  #   environment:
+  #     ME_CONFIG_MONGODB_SERVER: t3-server-db
+  #   image: mongo-express
+  #   ports:
+  #     - 8081:8081
+  #   volumes:
+  #     - ./docker-entrypoint.sh:/docker-entrypoint.sh
