@@ -3,8 +3,6 @@ services:
   t3-server:
     container_name: t3-server
     build: .
-    volumes:
-      - .:/usr/src/app
     ports:
       - "5001:5001"
       - "5757:5757"
