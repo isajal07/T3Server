@@ -9,8 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateText = exports.addText = void 0;
+exports.updateText = exports.addText = exports.getText = void 0;
 const Test = require("../models/test");
+const getText = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const getTexts = yield Test.find({});
+        res.send(getTexts);
+    }
+    catch (e) {
+        res.status(500).send(e);
+    }
+});
+exports.getText = getText;
 const addText = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { someText } = req.body;

@@ -24,7 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
-const testController = __importStar(require("../controllers/test"));
+const parameterController = __importStar(require("../controllers/parameters"));
 const router = express.Router();
 const setupREST = (router) => {
     return ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'].reduce((ac, i) => {
@@ -33,11 +33,7 @@ const setupREST = (router) => {
     }, {});
 };
 const { GET, POST, PUT, DELETE, PATCH } = setupREST(router);
-// GET('/',(req,res)=>{
-// res.json({message:'Review app server is up an running'})
-// })
-//test contollers
-POST('/add', testController.addText);
-PUT('/add/:id', testController.updateText);
-// POST('/signin', userController.userSignIn);
+//Parameters
+POST('/createParameter', parameterController.createParameters);
+PUT('/updateParameter', parameterController.updateParameters);
 module.exports = router;

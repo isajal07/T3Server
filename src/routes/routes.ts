@@ -1,6 +1,5 @@
 import * as express from 'express';
-import * as testController from '../controllers/test';
-
+import * as parameterController from '../controllers/parameters';
 const router = express.Router()
 
 const setupREST = (router) => {
@@ -12,12 +11,8 @@ const setupREST = (router) => {
 
 const { GET, POST, PUT, DELETE, PATCH } = setupREST(router);
 
-// GET('/',(req,res)=>{
-// res.json({message:'Review app server is up an running'})
-// })
-//test contollers
-POST('/add', testController.addText);
-PUT('/add/:id', testController.updateText)
-// POST('/signin', userController.userSignIn);
+//Parameters
+POST('/createParameter', parameterController.createParameters);
+PUT('/updateParameter', parameterController.updateParameters);
 
-module.exports = router
+module.exports = router;
