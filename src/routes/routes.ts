@@ -1,5 +1,6 @@
 import * as express from 'express';
 import * as parameterController from '../controllers/parameters';
+import * as userController from '../controllers/user';
 const router = express.Router()
 
 const setupREST = (router) => {
@@ -10,6 +11,10 @@ const setupREST = (router) => {
 };
 
 const { GET, POST, PUT, DELETE, PATCH } = setupREST(router);
+
+//Users
+POST('/createUser', userController.createUser);
+GET('/signinUser', userController.signinUser);
 
 //Parameters
 GET('/getParameters', parameterController.getParameters);
