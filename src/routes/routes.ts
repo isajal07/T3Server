@@ -12,7 +12,8 @@ const setupREST = (router) => {
 const { GET, POST, PUT, DELETE, PATCH } = setupREST(router);
 
 //Parameters
-POST('/createParameter', parameterController.createParameters);
-PUT('/updateParameter', parameterController.updateParameters);
+GET('/getParameters', parameterController.getParameters);
+POST('/createParameters', parameterController.createParameters);
+PUT('/updateParameters', parameterController.updateParameters);
 
 module.exports = router;
