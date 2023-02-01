@@ -26,19 +26,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const parameterController = __importStar(require("../controllers/parameters"));
 const userController = __importStar(require("../controllers/user"));
+const userGameDataController = __importStar(require("../controllers/userGameData"));
 const router = express.Router();
 const setupREST = (router) => {
-    return ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'].reduce((ac, i) => {
+    return ["GET", "POST", "PUT", "DELETE", "PATCH"].reduce((ac, i) => {
         ac[i] = (route, ...fns) => router[i.toLowerCase()](route, ...fns);
         return ac;
     }, {});
 };
 const { GET, POST, PUT, DELETE, PATCH } = setupREST(router);
 //Users
-POST('/createUser', userController.createUser);
-GET('/signinUser', userController.signinUser);
+POST("/createUser", userController.createUser);
+GET("/signinUser", userController.signinUser);
 //Parameters
-GET('/getParameters', parameterController.getParameters);
-POST('/createParameters', parameterController.createParameters);
-PUT('/updateParameters', parameterController.updateParameters);
+GET("/getParameters", parameterController.getParameters);
+POST("/createParameters", parameterController.createParameters);
+PUT("/updateParameters", parameterController.updateParameters);
+//UserGameData
+POST("/createUserGameData", userGameDataController.createUserGameData);
+GET("/getUserGameData/:userGameDataId", userGameDataController.getUserGameData);
+GET("/getUserGameDatas", userGameDataController.getUserGameDatas);
 module.exports = router;
