@@ -1,2 +1,2 @@
-# T3Server
-Backend for T3.
+# T2Server
+Backend for T2.
