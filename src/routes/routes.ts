@@ -1,6 +1,6 @@
 import * as express from "express";
 import * as parameterController from "../controllers/parameters";
-import * as userController from "../controllers/user";
+import * as adminController from "../controllers/admin";
 import * as userGameDataController from "../controllers/userGameData";
 import * as studyController from "../controllers/study";
 
@@ -16,8 +16,8 @@ const setupREST = (router) => {
 const { GET, POST, PUT, DELETE, PATCH } = setupREST(router);
 
 //Users
-POST("/createUser", userController.createUser);
-GET("/signinUser", userController.signinUser);
+POST("/createAdmin", adminController.createAdmin);
+GET("/signinAdmin", adminController.signinAdmin);
 
 //Parameters
 GET("/getParameters", parameterController.getParameters);

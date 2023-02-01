@@ -1,7 +1,7 @@
 import * as mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
+const AdminSchema = new Schema({
   fullName: {
     type: String,
     required: true,
@@ -12,6 +12,6 @@ const UserSchema = new Schema({
   },
 });
 
-const User = mongoose.model("User", UserSchema);
+const Admin = mongoose.model("Admin", AdminSchema);
 
-module.exports = User;
+module.exports = Admin;
