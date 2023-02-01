@@ -1,7 +1,7 @@
 {
-  "name": "t3server",
+  "name": "t2server",
   "version": "1.0.0",
-  "description": "Backend for T3.",
+  "description": "Backend for T2.",
   "main": "index.js",
   "scripts": {
     "build": "npx tsc",
