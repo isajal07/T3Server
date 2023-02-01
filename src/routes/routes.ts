@@ -2,6 +2,8 @@ import * as express from "express";
 import * as parameterController from "../controllers/parameters";
 import * as userController from "../controllers/user";
 import * as userGameDataController from "../controllers/userGameData";
+import * as studyController from "../controllers/study";
+
 const router = express.Router();
 
 const setupREST = (router) => {
@@ -22,8 +24,12 @@ GET("/getParameters", parameterController.getParameters);
 POST("/createParameters", parameterController.createParameters);
 PUT("/updateParameters", parameterController.updateParameters);
 
+//Study
+POST("/createStudy", studyController.createStudy);
+
 //UserGameData
 POST("/createUserGameData", userGameDataController.createUserGameData);
 GET("/getUserGameData/:userGameDataId", userGameDataController.getUserGameData);
 GET("/getUserGameDatas", userGameDataController.getUserGameDatas);
+
 module.exports = router;

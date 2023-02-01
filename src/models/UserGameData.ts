@@ -19,6 +19,10 @@ const UserGameDataSchema = new Schema(
       type: Number,
       required: true,
     },
+    studyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Study'
+    },
     events: [
       {
         eventName: {
@@ -30,16 +34,18 @@ const UserGameDataSchema = new Schema(
           required: true,
         },
         building: {
-          type: String, //Name of 2 building
+          type: Number, //Name of 2 building
+          enum : [1,2],
         },
         rule: {
           type: String, //Shape, color, size
         },
         advisor: {
-          type: String, //Human or AI
+          type: Number, //Human or AI
+          enum : [1,2], 
         },
         latency: {
-          type: String,
+          type: Number,
         },
       },
     ],
