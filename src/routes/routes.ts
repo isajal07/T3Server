@@ -17,19 +17,24 @@ const { GET, POST, PUT, DELETE, PATCH } = setupREST(router);
 
 //Users
 POST("/createAdmin", adminController.createAdmin);
-GET("/signinAdmin", adminController.signinAdmin);
+POST("/signinAdmin", adminController.signinAdmin);
 
 //Parameters
 GET("/getParameters", parameterController.getParameters);
 POST("/createParameters", parameterController.createParameters);
-PUT("/updateParameters", parameterController.updateParameters);
+PUT("/updateParameters/:parameterId", parameterController.updateParameters);
+PUT("/selectParameter/:parameterId", parameterController.selectParameter);
+GET("/getSelectedParameters", parameterController.getSelectedParameters);
 
 //Study
 POST("/createStudy", studyController.createStudy);
+GET("/getStudies", studyController.getStudies);
+PUT("/selectStudy/:studyId", studyController.selectStudy);
 
 //UserGameData
 POST("/createUserGameData", userGameDataController.createUserGameData);
-GET("/getUserGameData/:userGameDataId", userGameDataController.getUserGameData);
 GET("/getUserGameDatas", userGameDataController.getUserGameDatas);
+GET("/getUserGameData/:userGameDataId", userGameDataController.getUserGameData);
+GET("/getUserGameData/studyId/:studyId", userGameDataController.getUserGameDataByStudyId);
 
 module.exports = router;

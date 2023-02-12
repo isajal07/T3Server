@@ -2,14 +2,16 @@ const UserGameData = require("../models/UserGameData");
 
 export const createUserGameData = async (req, res, next) => {
   try {
-    const { aliasName, team, whiteHatScore, blackHatScore, events, studyId } = req.body;
+    const { aliasName, team, whiteHatScore, blackHatScore, events, studyId, parameterId, gameMode } = req.body;
     const newUserGameData = new UserGameData({
       aliasName,
       team,
       whiteHatScore,
       blackHatScore,
-      events,
       studyId,
+      parameterId,
+      events,
+      gameMode,
     });
     const savedUserGameData = await newUserGameData.save();
     res.status(200).json(savedUserGameData);
@@ -34,6 +36,16 @@ export const getUserGameDatas = async (req, res, next) => {
     //TODO: Pagination and sorting 
     //TODO: get data of a specific test. 
     res.status(200).json(userGameDatas);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+};
+
+export const getUserGameDataByStudyId = async (req, res, next) => {
+  try {
+    const { studyId } = req.params;
+    const userGameData = await UserGameData.find({studyId: studyId});
+    res.status(200).json(userGameData);
   } catch (e) {
     res.status(500).send(e);
   }

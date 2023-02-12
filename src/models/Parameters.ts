@@ -78,6 +78,17 @@ const ParameterSchema = new Schema({
 
 const ParametersSchema = new Schema(
   {
+    name: {
+      type: String,
+      required: true,
+    },
+    note: {
+      type: String,
+    },
+    isSelected:{
+      type: Boolean,
+      required: true,
+    },
     training: ParameterSchema,
     session: ParameterSchema,
   },

@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
+const cors = require('cors');
 
 dotenv.config();
 
@@ -7,6 +8,8 @@ const app: Express = express();
 const port = process.env.PORT;
 require('./src/db/mongoose');
 const router = require('./src/routes/routes')
+
+app.use(cors());
 
 app.use(express.json());
 

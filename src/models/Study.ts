@@ -2,16 +2,24 @@ import * as mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const StudySchema = new Schema({
-  studyName: {
+  name: {
     type: String,
     required: true,
   },
-  scheduledStudyData: {
-    type: Date,
+  isSelected: {
+    type: Boolean,
     required: true,
   },
   info: {
     type: String
+  },
+  createdBy:{
+    type: String,
+    require: true
+  },
+  createdAt: {
+    type: Date,
+    require:true
   }
 },
 { timestamps: true }

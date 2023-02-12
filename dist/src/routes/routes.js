@@ -25,8 +25,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
 const parameterController = __importStar(require("../controllers/parameters"));
-const userController = __importStar(require("../controllers/user"));
+const adminController = __importStar(require("../controllers/admin"));
 const userGameDataController = __importStar(require("../controllers/userGameData"));
+const studyController = __importStar(require("../controllers/study"));
 const router = express.Router();
 const setupREST = (router) => {
     return ["GET", "POST", "PUT", "DELETE", "PATCH"].reduce((ac, i) => {
@@ -36,14 +37,21 @@ const setupREST = (router) => {
 };
 const { GET, POST, PUT, DELETE, PATCH } = setupREST(router);
 //Users
-POST("/createUser", userController.createUser);
-GET("/signinUser", userController.signinUser);
+POST("/createAdmin", adminController.createAdmin);
+POST("/signinAdmin", adminController.signinAdmin);
 //Parameters
 GET("/getParameters", parameterController.getParameters);
 POST("/createParameters", parameterController.createParameters);
-PUT("/updateParameters", parameterController.updateParameters);
+PUT("/updateParameters/:parameterId", parameterController.updateParameters);
+PUT("/selectParameter/:parameterId", parameterController.selectParameter);
+GET("/getSelectedParameters", parameterController.getSelectedParameters);
+//Study
+POST("/createStudy", studyController.createStudy);
+GET("/getStudies", studyController.getStudies);
+PUT("/selectStudy/:studyId", studyController.selectStudy);
 //UserGameData
 POST("/createUserGameData", userGameDataController.createUserGameData);
-GET("/getUserGameData/:userGameDataId", userGameDataController.getUserGameData);
 GET("/getUserGameDatas", userGameDataController.getUserGameDatas);
+GET("/getUserGameData/:userGameDataId", userGameDataController.getUserGameData);
+GET("/getUserGameData/studyId/:studyId", userGameDataController.getUserGameDataByStudyId);
 module.exports = router;

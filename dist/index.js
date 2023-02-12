@@ -5,11 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const cors = require('cors');
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 require('./src/db/mongoose');
 const router = require('./src/routes/routes');
+app.use(cors());
 app.use(express_1.default.json());
 app.get('/', (req, res) => {
     res.send('Express + TypeScript Serverrrrr');

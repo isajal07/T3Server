@@ -23,6 +23,14 @@ const UserGameDataSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Study'
     },
+    parameterId:{
+      type:  mongoose.Schema.Types.ObjectId,
+      ref: 'Parameters'
+    },
+    gameMode: {
+      type: String,
+      required: true,
+    },
     events: [
       {
         eventName: {

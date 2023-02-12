@@ -16,9 +16,8 @@ export const signinAdmin = async (req, res, next) => {
     const { password } = req.body;
     const admin = await Admin.findOne({ password });
     if (!admin) {
-      res.status(403).json({ message: "Access Denied!" });
+      res.status(403);
     }
-    // TODO: Create and Send Token!
     res.status(200).json(admin);
   } catch (e) {
     res.status(500).send(e);
