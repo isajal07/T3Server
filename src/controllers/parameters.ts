@@ -3,7 +3,7 @@ const Parameters = require("../models/Parameters");
 export const getParameters = async (req, res, next) => {
   try {
     const parameters = await Parameters.find({});
-    res.status(200).json(parameters);
+    res.status(200).send(parameters);
   } catch (e) {
     res.status(500).send(e);
   }
