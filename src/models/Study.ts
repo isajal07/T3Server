@@ -15,7 +15,6 @@ const StudySchema = new Schema({
   },
   createdBy:{
     type: String,
-    require: true
   },
   createdAt: {
     type: Date,

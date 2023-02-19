@@ -11,8 +11,8 @@ export const getSettings = async (req, res, next) => {
 
 export const createSettings = async (req, res, next) => {
   try {
-    const { name, note, training, session } = req.body;
-    const newSettings= new Settings({ name, note, isSelected: false, training, session });
+    const { name, note, createdBy, training, session } = req.body;
+    const newSettings= new Settings({ name, note, createdBy, isSelected: false, training, session });
     const savedSettings= await newSettings.save();
     res.status(200).json(savedSettings);
   } catch (e) {
