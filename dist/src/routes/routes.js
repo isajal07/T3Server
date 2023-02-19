@@ -24,7 +24,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = __importStar(require("express"));
-const parameterController = __importStar(require("../controllers/parameters"));
+const settingsController = __importStar(require("../controllers/settings"));
 const adminController = __importStar(require("../controllers/admin"));
 const userGameDataController = __importStar(require("../controllers/userGameData"));
 const studyController = __importStar(require("../controllers/study"));
@@ -39,12 +39,12 @@ const { GET, POST, PUT, DELETE, PATCH } = setupREST(router);
 //Users
 POST("/createAdmin", adminController.createAdmin);
 POST("/signinAdmin", adminController.signinAdmin);
-//Parameters
-GET("/getParameters", parameterController.getParameters);
-POST("/createParameters", parameterController.createParameters);
-PUT("/updateParameters/:parameterId", parameterController.updateParameters);
-PUT("/selectParameter/:parameterId", parameterController.selectParameter);
-GET("/getSelectedParameters", parameterController.getSelectedParameters);
+//Settings
+GET("/getSettings", settingsController.getSettings);
+POST("/createSettings", settingsController.createSettings);
+PUT("/updateSettings/:settingsId", settingsController.updateSettings);
+PUT("/selectSettings/:settingsId", settingsController.selectSettings);
+GET("/getSelectedSettings", settingsController.getSelectedSettings);
 //Study
 POST("/createStudy", studyController.createStudy);
 GET("/getStudies", studyController.getStudies);

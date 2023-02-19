@@ -2,14 +2,14 @@ const UserGameData = require("../models/UserGameData");
 
 export const createUserGameData = async (req, res, next) => {
   try {
-    const { aliasName, team, whiteHatScore, blackHatScore, events, studyId, parameterId, gameMode } = req.body;
+    const { aliasName, team, whiteHatScore, blackHatScore, events, studyId, settingsId, gameMode } = req.body;
     const newUserGameData = new UserGameData({
       aliasName,
       team,
       whiteHatScore,
       blackHatScore,
       studyId,
-      parameterId,
+      settingsId,
       events,
       gameMode,
     });

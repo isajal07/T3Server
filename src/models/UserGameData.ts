@@ -23,9 +23,9 @@ const UserGameDataSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Study'
     },
-    parameterId:{
+    settingsId:{
       type:  mongoose.Schema.Types.ObjectId,
-      ref: 'Parameters'
+      ref: 'Settings'
     },
     gameMode: {
       type: String,

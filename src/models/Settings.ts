@@ -76,11 +76,15 @@ const ParameterSchema = new Schema({
   },
 });
 
-const ParametersSchema = new Schema(
+const SettingsSchema = new Schema(
   {
     name: {
       type: String,
       required: true,
+    },
+    createdBy:{
+      type: String,
+      require: true
     },
     note: {
       type: String,
@@ -95,6 +99,6 @@ const ParametersSchema = new Schema(
   { timestamps: true }
 );
 
-const TrainingParameters = mongoose.model("Parameters", ParametersSchema);
+const Settings = mongoose.model("Settings", SettingsSchema);
 
-module.exports = TrainingParameters;
+module.exports = Settings;

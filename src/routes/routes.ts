@@ -1,5 +1,5 @@
 import * as express from "express";
-import * as parameterController from "../controllers/parameters";
+import * as settingsController from "../controllers/settings";
 import * as adminController from "../controllers/admin";
 import * as userGameDataController from "../controllers/userGameData";
 import * as studyController from "../controllers/study";
@@ -19,12 +19,12 @@ const { GET, POST, PUT, DELETE, PATCH } = setupREST(router);
 POST("/createAdmin", adminController.createAdmin);
 POST("/signinAdmin", adminController.signinAdmin);
 
-//Parameters
-GET("/getParameters", parameterController.getParameters);
-POST("/createParameters", parameterController.createParameters);
-PUT("/updateParameters/:parameterId", parameterController.updateParameters);
-PUT("/selectParameter/:parameterId", parameterController.selectParameter);
-GET("/getSelectedParameters", parameterController.getSelectedParameters);
+//Settings
+GET("/getSettings", settingsController.getSettings);
+POST("/createSettings", settingsController.createSettings);
+PUT("/updateSettings/:settingsId", settingsController.updateSettings);
+PUT("/selectSettings/:settingsId", settingsController.selectSettings);
+GET("/getSelectedSettings", settingsController.getSelectedSettings);
 
 //Study
 POST("/createStudy", studyController.createStudy);
