@@ -2,9 +2,16 @@ const UserGameData = require("../models/UserGameData");
 
 export const createUserGameData = async (req, res, next) => {
   try {
-    console.log(req.body);
-  
-    const { name, whitehatScore, blackhatScore, records, studyId, settingsId, gameMode } = req.body;
+    let { name, whitehatScore, blackhatScore, records, studyId, settingsId, gameMode } = req.body;
+    
+    // Covnvert array to strings
+    records = records.map(record => {
+      return {
+        ...record,
+        eventModifiers: record.eventModifiers.toString()
+      }
+    })
+
     const newUserGameData = new UserGameData({
       name, whitehatScore, blackhatScore, records, studyId, settingsId, gameMode
     });

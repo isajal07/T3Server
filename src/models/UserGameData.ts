@@ -10,7 +10,9 @@ const RecordSchema = new Schema({
     type: String,
     required: true,
   },
-  eventModifier: [String]
+  eventModifiers: {
+    type: String,
+  }
 });
 
 const UserGameDataSchema = new Schema(
