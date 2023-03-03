@@ -50,7 +50,6 @@ POST("/createStudy", studyController.createStudy);
 GET("/getStudies", studyController.getStudies);
 PUT("/selectStudy/:studyId", studyController.selectStudy);
 GET("/getSelectedStudy", studyController.getSelectedStudy);
-
 //UserGameData
 POST("/createUserGameData", userGameDataController.createUserGameData);
 GET("/getUserGameDatas", userGameDataController.getUserGameDatas);

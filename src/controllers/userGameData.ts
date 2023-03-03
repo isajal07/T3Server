@@ -3,21 +3,13 @@ const UserGameData = require("../models/UserGameData");
 export const createUserGameData = async (req, res, next) => {
   try {
     console.log(req.body);
-    const {name, whitehatScore, blackhatScore, records} = req.body;
-
-    // const { aliasName, team, whiteHatScore, blackHatScore, events, studyId, settingsId, gameMode } = req.body;
-    // const newUserGameData = new UserGameData({
-    //   aliasName,
-    //   team,
-    //   whiteHatScore,
-    //   blackHatScore,
-    //   studyId,
-    //   settingsId,
-    //   events,
-    //   gameMode,
-    // });
-    // const savedUserGameData = await newUserGameData.save();
-    // res.status(200).json(savedUserGameData);
+  
+    const { name, whitehatScore, blackhatScore, records, studyId, settingsId, gameMode } = req.body;
+    const newUserGameData = new UserGameData({
+      name, whitehatScore, blackhatScore, records, studyId, settingsId, gameMode
+    });
+    const savedUserGameData = await newUserGameData.save();
+    res.status(200).json(savedUserGameData);
   } catch (e) {
     res.status(500).send(e);
   }

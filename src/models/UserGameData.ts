@@ -1,21 +1,32 @@
 import * as mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
+const RecordSchema = new Schema({
+  secondsFromStart: {
+    type: Number,
+    required: true,
+  },
+  eventName: {
+    type: String,
+    required: true,
+  },
+  eventModifier: [{
+    type: String,
+    required: true,
+  }]
+});
+
 const UserGameDataSchema = new Schema(
   {
-    aliasName: {
+    name: {
       type: String,
       required: true,
     },
-    team: {
-      type: String,
-      required: true,
-    },
-    whiteHatScore: {
+    whitehatScore: {
       type: Number,
       required: true,
     },
-    blackHatScore: {
+    blackhatScore: {
       type: Number,
       required: true,
     },
@@ -31,32 +42,33 @@ const UserGameDataSchema = new Schema(
       type: String,
       required: true,
     },
-    events: [
-      {
-        eventName: {
-          type: String,
-          required: true,
-        },
-        time: {
-          type: String,
-          required: true,
-        },
-        building: {
-          type: Number, //Name of 2 building
-          enum : [1,2],
-        },
-        rule: {
-          type: String, //Shape, color, size
-        },
-        advisor: {
-          type: Number, //Human or AI
-          enum : [1,2], 
-        },
-        latency: {
-          type: Number,
-        },
-      },
-    ],
+    records: RecordSchema
+    // events: [
+    //   {
+    //     eventName: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //     time: {
+    //       type: String,
+    //       required: true,
+    //     },
+    //     building: {
+    //       type: Number, //Name of 2 building
+    //       enum : [1,2],
+    //     },
+    //     rule: {
+    //       type: String, //Shape, color, size
+    //     },
+    //     advisor: {
+    //       type: Number, //Human or AI
+    //       enum : [1,2], 
+    //     },
+    //     latency: {
+    //       type: Number,
+    //     },
+    //   },
+    // ],
   },
   { timestamps: true }
 );
