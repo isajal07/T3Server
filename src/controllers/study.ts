@@ -32,3 +32,12 @@ export const selectStudy = async (req, res, next) => {
     res.status(500).send(e);
   }
 };
+
+export const getSelectedStudy = async (req, res, next) => {
+  try {
+    const study = await Study.findOne({isSelected: true});
+    res.status(200).json({ studyId: study._id });
+  } catch (e) {
+    res.status(500).send(e);
+  }
+};
