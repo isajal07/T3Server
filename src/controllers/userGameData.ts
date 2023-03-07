@@ -52,3 +52,12 @@ export const getUserGameDataByStudyId = async (req, res, next) => {
     res.status(500).send(e);
   }
 };
+
+export const sajalTest = async (req, res, next) => {
+  try {
+    const sajal = {hello: "test"}
+    res.status(200).json(sajal)
+  } catch(e) {  
+    res.status(500).send(e);
+  }
+};
