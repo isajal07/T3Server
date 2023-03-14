@@ -21,8 +21,8 @@ app.get('/', (req, res) => {
 });
 app.use('/api', router);
 const sslServer = https.createServer({
-    key: fs.readFileSync(path.join(__dirname, '../cert', 'key.pem')),
-    cert: fs.readFileSync(path.join(__dirname, '../cert', 'cert.pem')),
+    key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
+    cert: fs.readFileSync('test/fixtures/keys/agent2-cert.pem'),
 }, app);
 sslServer.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
