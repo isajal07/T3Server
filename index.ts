@@ -23,8 +23,8 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/api', router);
 
 const sslServer = https.createServer({
-  key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
-  cert: fs.readFileSync('test/fixtures/keys/agent2-cert.pem'),
+  key: fs.readFileSync('/etc/letsencrypt/live/taiser2.site/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/taiser2.site/fullchain.pem'),
 }, app);
 
 sslServer.listen(port, () => {
