@@ -89,6 +89,14 @@ const SettingsSchema = new Schema(
       type: Boolean,
       required: true,
     },
+    settingNumber: {
+      type: Number,
+      default: null,
+    },
+    study: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Study'
+    },
     training: ParameterSchema,
     session: ParameterSchema,
   },

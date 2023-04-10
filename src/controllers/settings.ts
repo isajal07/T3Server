@@ -2,7 +2,17 @@ const Settings = require("../models/Settings");
 
 export const getSettings = async (req, res, next) => {
   try {
-    const getSettings = await Settings.find({});
+    const getSettings = await Settings.find({}).populate('study', {'name':1, 'numberOfSettings':1});
+    res.status(200).send(getSettings);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+};
+
+export const getStudySettings = async (req, res, next) => {
+  try {
+    const { studyId } = req.params;
+    const getSettings = await Settings.find({ study: studyId}).populate('study', {'name':1, 'numberOfSettings':1});
     res.status(200).send(getSettings);
   } catch (e) {
     res.status(500).send(e);
@@ -11,8 +21,8 @@ export const getSettings = async (req, res, next) => {
 
 export const createSettings = async (req, res, next) => {
   try {
-    const { name, note, createdBy, training, session } = req.body;
-    const newSettings= new Settings({ name, note, createdBy, isSelected: false, training, session });
+    const { name, note, createdBy, study, training, session, settingNumber } = req.body;
+    const newSettings= new Settings({ name, note, createdBy, isSelected: false, study: study._id, training, session, settingNumber });
     const savedSettings= await newSettings.save();
     res.status(200).json(savedSettings);
   } catch (e) {
@@ -22,11 +32,11 @@ export const createSettings = async (req, res, next) => {
 
 export const updateSettings = async (req, res, next) => {
   try {
-    const { training, session } = req.body;
+    const { study, training, session, settingNumber } = req.body;
     const { settingsId } = req.params;
     const settings = await Settings.findByIdAndUpdate(
       settingsId,
-      { training, session },
+      { study, training, session, settingNumber },
       { new: true }
     );
     res.status(200).send(settings);
@@ -35,11 +45,17 @@ export const updateSettings = async (req, res, next) => {
   }
 };
 
+// TODO: need to select more than one settings. 
 export const selectSettings = async (req, res, next) => {
   try {
     const { settingsId } = req.params;
-    await Settings.updateMany({ isSelected: false }).then(async (params) => {
-      await Settings.findByIdAndUpdate(settingsId, { isSelected: true }, { new: true }).then((selectedSettings) => {
+    const { studyId, settingNumber } = req.query;
+    
+     const filter = { study: studyId, settingNumber: settingNumber };
+     const update = { isSelected: false, settingNumber: null };
+
+    await Settings.updateMany(filter, update).then(async (params) => {
+      await Settings.findByIdAndUpdate(settingsId, { isSelected: true, settingNumber: settingNumber }, { new: true }).then((selectedSettings) => {
         res.status(200).send(selectedSettings);
       }).catch(e => res.status(500).send(e))
     })
@@ -50,7 +66,8 @@ export const selectSettings = async (req, res, next) => {
 
 export const getSelectedSettings = async (req, res, next) => {
   try {
-    const settings = await Settings.findOne({isSelected: true});
+    const { settingNumber } = req.params;
+    const settings = await Settings.findOne({isSelected: true, settingNumber });
     res.status(200).json(settings);
   } catch (e) {
     res.status(500).send(e);

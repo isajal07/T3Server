@@ -16,6 +16,10 @@ const StudySchema = new Schema({
   createdBy:{
     type: String,
   },
+  numberOfSettings:{
+    type: Number,
+    default: 1,
+  },
   createdAt: {
     type: Date,
     require:true

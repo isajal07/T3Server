@@ -41,6 +41,7 @@ POST("/createAdmin", adminController.createAdmin);
 POST("/signinAdmin", adminController.signinAdmin);
 //Settings
 GET("/getSettings", settingsController.getSettings);
+GET("/getSettings/:studyId", settingsController.getStudySettings);
 POST("/createSettings", settingsController.createSettings);
 PUT("/updateSettings/:settingsId", settingsController.updateSettings);
 PUT("/selectSettings/:settingsId", settingsController.selectSettings);

@@ -2,8 +2,8 @@ const Study = require("../models/Study");
 
 export const createStudy = async (req, res, next) => {
   try {
-    const { name, info, createdBy, createdAt } = req.body;
-    const newStudy = new Study({ name, info, createdBy, createdAt, isSelected: false });
+    const { name, info, numberOfSettings, createdBy, createdAt } = req.body;
+    const newStudy = new Study({ name, info, numberOfSettings, createdBy, createdAt, isSelected: false });
     const savedStudy = await newStudy.save();
     res.status(200).json(savedStudy);
   } catch (e) {
