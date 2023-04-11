@@ -66,8 +66,8 @@ export const selectSettings = async (req, res, next) => {
 
 export const getSelectedSettings = async (req, res, next) => {
   try {
-    const { settingNumber } = req.params;
-    const settings = await Settings.findOne({isSelected: true, settingNumber });
+    const { studyId, settingNumber } = req.query;
+    const settings = await Settings.findOne({isSelected: true, settingNumber, study: studyId });
     res.status(200).json(settings);
   } catch (e) {
     res.status(500).send(e);
