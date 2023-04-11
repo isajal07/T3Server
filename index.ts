@@ -5,9 +5,9 @@ const cors = require('cors');
 dotenv.config();
 
 const app: Express = express();
-// const https = require('https');
-// const path = require('path');
-// const fs = require('fs');
+const https = require('https');
+const path = require('path');
+const fs = require('fs');
 
 const port = process.env.PORT;
 require('./src/db/mongoose');
@@ -22,11 +22,11 @@ app.get('/', (req: Request, res: Response) => {
 });
 app.use('/api', router);
 
-// const sslServer = https.createServer({
-//   key: fs.readFileSync('/etc/letsencrypt/live/taiser2.site/privkey.pem'),
-//   cert: fs.readFileSync('/etc/letsencrypt/live/taiser2.site/fullchain.pem'),
-// }, app);
+const sslServer = https.createServer({
+  key: fs.readFileSync('/etc/letsencrypt/live/taiser2.site/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/taiser2.site/fullchain.pem'),
+}, app);
 
-app.listen(port, () => {
+sslServer.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
