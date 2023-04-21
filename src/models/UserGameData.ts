@@ -41,6 +41,9 @@ const UserGameDataSchema = new Schema(
       type: String,
       required: true,
     },
+    group:{
+      type: Number,
+    },
     records: [RecordSchema]
     // events: [
     //   {
