@@ -38,7 +38,7 @@ POST("/createUserGameData", userGameDataController.createUserGameData);
 GET("/getUserGameDatas", userGameDataController.getUserGameDatas);
 GET("/getUserGameData/:userGameDataId", userGameDataController.getUserGameData);
 GET("/getUserGameData/studyId/:studyId", userGameDataController.getUserGameDataByStudyId);
-
+DELETE("/deleteGameData", userGameDataController.deleteGameData);
 GET("/sajal", userGameDataController.sajalTest);
 
 module.exports = router;

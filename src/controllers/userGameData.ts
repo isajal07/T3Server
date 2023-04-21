@@ -53,6 +53,14 @@ export const getUserGameDataByStudyId = async (req, res, next) => {
   }
 };
 
+export const deleteGameData = async (req, res, next) => {
+  try {
+    const deleteGameData = await UserGameData.find({ studyId:'643c2a0f8294eb9ab101cec9' }).remove().exec();
+    res.status(200).json(deleteGameData);
+  } catch (e) {
+    res.status(500).send(e);
+  }
+};
 export const sajalTest = async (req, res, next) => {
   try {
     const sajal = {hello: "test"}
@@ -61,3 +69,4 @@ export const sajalTest = async (req, res, next) => {
     res.status(500).send(e);
   }
 };
+
