@@ -25,7 +25,7 @@ export const createUserGameData = async (req, res, next) => {
 export const getUserGameData = async (req, res, next) => {
   try {
     const { userGameDataId } = req.params;
-    const userGameData = await UserGameData.findById(userGameDataId);
+    const userGameData = await UserGameData.findById(userGameDataId).populate('settingsId', 'name');
     res.status(200).json(userGameData);
   } catch (e) {
     res.status(500).send(e);
@@ -34,7 +34,7 @@ export const getUserGameData = async (req, res, next) => {
 
 export const getUserGameDatas = async (req, res, next) => {
   try {
-    const userGameDatas = await UserGameData.find({});
+    const userGameDatas = await UserGameData.find();
     //TODO: Pagination and sorting 
     //TODO: get data of a specific test. 
     res.status(200).json(userGameDatas);
@@ -46,13 +46,24 @@ export const getUserGameDatas = async (req, res, next) => {
 export const getUserGameDataByStudyId = async (req, res, next) => {
   try {
     const { studyId } = req.params;
-    const userGameData = await UserGameData.find({studyId: studyId});
+    const userGameData = await UserGameData.find({studyId: studyId, gameMode: "Session"});
     res.status(200).json(userGameData);
   } catch (e) {
     res.status(500).send(e);
   }
 };
 
+// Scripts 
+export const updateUserGameData = async (req, res, next) => {
+  try {
+    const filter = { _id: '64447536d281a4eb1d495324' };
+    const update = { name: 'cs345.23.13', group: 1 };
+    const updateUserGameData = await UserGameData.findOneAndUpdate(filter, update);
+    res.status(200).json(updateUserGameData);
+  } catch(e) {  
+    res.status(500).send(e);
+  }
+};
 export const deleteGameData = async (req, res, next) => {
   try {
     const deleteGameData = await UserGameData.find({ studyId:'643c2a0f8294eb9ab101cec9' }).remove().exec();
