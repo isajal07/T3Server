@@ -52,14 +52,31 @@ export const getUserGameDataByStudyId = async (req, res, next) => {
     res.status(500).send(e);
   }
 };
-
 // Scripts 
 export const updateUserGameData = async (req, res, next) => {
   try {
-    const filter = { _id: '64447536d281a4eb1d495324' };
-    const update = { name: 'cs345.23.13', group: 1 };
-    const updateUserGameData = await UserGameData.findOneAndUpdate(filter, update);
-    res.status(200).json(updateUserGameData);
+    // const filter = { name: '' };
+
+    console.log('cc')
+    await UserGameData.findById("64480f1cabaceb7a597937f3").then(async data => 
+      {
+        const newData = data.records.map((obj, index) => {
+          if (obj.eventName === 'AdvisorSelectLatency') {
+            const nextObj = data.records[index + 1];
+            if (nextObj && nextObj.eventModifiers === 'AI') {
+              obj.eventName = 'AISelectLatency';
+            } else if (nextObj && nextObj.eventModifiers === 'Human') {
+              obj.eventName = 'HumanSelectLatency';
+            }
+          }
+          return obj;
+        });
+
+        await UserGameData.findOneAndUpdate({_id: data._id}, {...data, records: newData}).then(dt => {
+          console.log(dt)
+          res.status(200).json(dt);
+        })
+      })
   } catch(e) {  
     res.status(500).send(e);
   }
@@ -80,4 +97,30 @@ export const sajalTest = async (req, res, next) => {
     res.status(500).send(e);
   }
 };
+
+
+
+// const abc = [
+//   [
+//     { eventName: 'HumanSelectLatency', eventModifiers: '2' },
+//     { eventName: 'PickedAdvisorType', eventModifiers: 'Human' },
+//     { eventName: 'HumanSelectLatency', eventModifiers: '12' },
+//     { eventName: 'PickedAdvisorType', eventModifiers: 'Human' },
+//     { eventName: 'AISelectLatency', eventModifiers: '8' },
+//     { eventName: 'PickedAdvisorType', eventModifiers: 'AI' },
+//   ],
+//   [
+//     { eventName: 'AISelectLatency', eventModifiers: '1' },
+//     { eventName: 'PickedAdvisorType', eventModifiers: 'AI' },
+//     { eventName: 'HumanSelectLatency', eventModifiers: '2' },
+//     { eventName: 'PickedAdvisorType', eventModifiers: 'Human' },
+//     { eventName: 'AISelectLatency', eventModifiers: '8' },
+//     { eventName: 'PickedAdvisorType', eventModifiers: 'AI' },
+//   ],
+// ];
+
+// const result = [
+//   [{Human: 2, latency: 14}, {AI: 1, latency: 8},{AI: 2, latency: 9}, {Human: 1, latency: 2},]
+// ];
+
 

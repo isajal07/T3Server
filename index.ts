@@ -25,11 +25,11 @@ app.get('/', (req: Request, res: Response) => {
 });
 app.use('/api', router);
 
-const sslServer = https.createServer({
-  key: fs.readFileSync('/etc/letsencrypt/live/taiser2.site/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/taiser2.site/fullchain.pem'),
-}, app);
+// const sslServer = https.createServer({
+//   key: fs.readFileSync('/etc/letsencrypt/live/taiser2.site/privkey.pem'),
+//   cert: fs.readFileSync('/etc/letsencrypt/live/taiser2.site/fullchain.pem'),
+// }, app);
 
-sslServer.listen(port, () => {
+app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
